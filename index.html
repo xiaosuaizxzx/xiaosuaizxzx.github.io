@@ -1,0 +1,191 @@
+<html style="font-size: 55.2px;background-color: #fbfbfd;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1,user-scalable=no">
+    <!--         渲染器             内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 默认IE兼容模式 -->
+    <meta name="renderer" content="ie-comp">
+    <!-- 默认IE标准模式 -->
+    <meta name="renderer" content="ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>币界网下载</title>
+</head>
+<div id="app">
+    <div class="header">
+        <ul class="tab">
+            <li id="biLiao" class="tabs active">币聊</li>
+            <li id="kaiHuBao" class="tabs">开户宝</li>
+        </ul>
+    </div>
+    <div class="content">
+        <!--币聊-->
+        <div id="biLiaoContent" class="tabContent" style="display: block;">
+            <div class="contents">
+                <img class="logo" src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/a4/b4/df/a4b4dfc4-10ed-0308-3627-8dbb3aade783/AppIcon-1x_U007emarketing-0-5-0-0-85-220.png/180x180bb.png" alt="">
+                <p>币聊</p>
+                <div class="nn">币圈用户必备的加密聊天软件</div>
+                <div class="bj_down">
+                    <a id="downloadButton" target="_blank" style="visibility: visible;" onclick="downbl()">
+                        <!--<img src="./img/down_icon.png" alt="" srcset="">-->
+                        下载应用</a>
+                </div>
+            </div>
+        </div>
+         <!--开户宝-->
+        <div id="kaiHuBaoContent" class="tabContent" style="display: none;">
+        <div class="contents">
+                <img class="logo" src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/29/b7/4e/29b74ec2-442d-1179-2cee-8aeab0a74f78/AppIcon-0-0-1x_U007epad-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/180x180bb.png" alt="">
+                <p>开户宝</p>
+                <div class="nn">交易所大全汇集主流交易所提供交易所开户地址和下载地址</div>
+                <div class="bj_down">
+                    <a id="downloadButton" target="_blank" style="visibility: visible;" onclick="downkhb()">
+                        <!--<img src="./img/down_icon.png" alt="" srcset="">-->
+                        下载应用</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    ul{
+        list-style: none;
+        padding-left:0px;
+    }
+.tab{
+    width: calc(100% - 0.6rem);
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: 0.88rem;
+    background: #efefef;
+    border-radius: 0.44rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.tabs{
+    flex: 1;
+    width: 3.2rem;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    text-align: center;
+    color: #000;
+    font-size: 0.28rem;
+    font-weight: bold;
+    border-radius: 0.4rem;
+}
+.tab li.active {
+    color: #fff;
+    background: #000;
+}
+.tabContent {
+    display: none;
+}
+.tabContent[style*="display: block"] {
+    display: block;
+}
+.logo{
+    width: 100px;
+    border-radius: 20px;
+}
+.contents{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-top: 0.56rem;
+}
+.contents p{
+    text-align: center;
+    width: 100%;
+    font-size: 0.36rem;
+    color: #000000;
+    margin-top: 0.16rem;
+    font-weight: bold;
+}
+.nn{
+    text-align: center;
+    width: 100%;
+    font-size: 0.28rem;
+    color: #000000;
+    margin-top: 0.08rem;
+}
+.bj_down {
+    width: 100%;
+    margin-top: 0.72rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bj_down a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.2rem;
+    height: 0.92rem;
+    background: transparent;
+    font-size: 0.32rem;
+    color: #000000;
+    font-weight: bold;
+    margin: 0 0.08rem;
+    border-radius: 0.12rem;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+.bj_down a img {
+    width: 0.48rem;
+    height: 0.48rem;
+}
+</style>
+<script>
+    var tabs = document.querySelectorAll(".tab li");
+    var contents = document.querySelectorAll(".tabContent");
+    tabs.forEach(function(tab, index) {
+        tab.addEventListener("click", function() {
+            tabs.forEach(function(tab) {
+                tab.classList.remove("active");
+            });
+            this.classList.add("active");
+            contents.forEach(function(content) {
+                content.style.display = "none";
+            });
+            contents[index].style.display = "block";
+        });
+    });
+    function downbl() {
+        var ua = navigator.userAgent;
+        var downloadLink;
+        if (/android/i.test(ua)) {
+            downloadLink = "https://download.kstore.space/download/5170/bichat.apk";
+        } else if (/iPad|iPhone|iPod/.test(ua)) {
+            downloadLink = "https://apps.apple.com/cn/app/id6451151852";
+        } else {
+            downloadLink = "https://download.kstore.space/download/5170/app-release.apk";
+        }
+        window.open(downloadLink,'_self')
+    }
+    function downkhb() {
+        
+        var ua = navigator.userAgent;
+        var downloadLink;
+        if (/android/i.test(ua)) {
+            downloadLink = "https://download.kstore.space/download/5170/app-release.apk";
+        } else if (/iPad|iPhone|iPod/.test(ua)) {
+            downloadLink = "https://apps.apple.com/cn/app/id1673529279";
+        } else {
+            downloadLink = "#";
+        }
+       window.open(downloadLink,'_self')
+    }
+</script>
+</html>
